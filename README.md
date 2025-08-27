@@ -1,9 +1,8 @@
 # Symbolic-Imitation-Learning-using-Inductive-Logic-Programming
 We extract symbolic first-order logical rules using inductive logic programming (ILP) to find a safe and legal policy in autonomous highway driving. Using inductive reasoning, this method is interpretable, generalizable, and data-efficient.
-
 # Rule Extraction from Datasets in `SIL/data/`
 
-This directory contains multiple subfolders (e.g., `velocity/`, `unsafe/`, `dangerous/`, `acceleration/`) corresponding to different semantic tasks. Each of these contains further subfolders (e.g., `increase/`, `left/`, `brake/`) that each represent a specific scenario or rule-learning target.
+This directory contains subfolders (e.g., `velocity/`, `unsafe/`, `dangerous/`, `acceleration/`) corresponding to different semantic tasks. Each of these contains further subfolders (e.g., `increase/`, `left/`, `brake/`) that each represent a specific scenario or rule-learning target.
 
 Each lowest-level folder contains three files:
 - `bias.pl` — bias settings for the rule learner (e.g., allowed predicates, head predicate)
@@ -32,70 +31,66 @@ SIL/data/
 
 ## How to Extract Rules
 
-The examples and instructions below assume you want to extract rules for each setting (e.g., velocity/increase). The process is similar for all other folders.
+### 1. Prerequisites
 
-### 1. Choose Your ILP System
+- **Popper** ([GitHub](https://github.com/logic-and-learning-lab/Popper)): Install Popper following the instructions in its repository.
+- **SWI-Prolog**: Popper requires SWI-Prolog.
+- **Python (with PySwip)**: Install PySwip (`pip install pyswip`) for Python-Prolog interaction.
 
-You need an Inductive Logic Programming (ILP) system such as [Aleph](http://www.comlab.ox.ac.uk/oucl/research/areas/machlearn/Aleph/) (for SWI-Prolog), [Popper](https://github.com/logic-and-learning-lab/Popper), or [ILASP](https://github.com/ilasplp/ILASP).
+### 2. Extracting Rules Using Popper
 
-Below is a generic workflow for Aleph, but you can adapt it to your ILP system of choice.
-
-### 2. Run the ILP Learner
-
-#### Using Aleph in SWI-Prolog
-
-1. Launch SWI-Prolog in the target folder:
+1. **Navigate to the Target Directory**  
+   Example for velocity/increase:
    ```sh
    cd SIL/data/velocity/increase
-   swipl
    ```
 
-2. Load the files in SWI-Prolog:
+2. **Prepare Popper Input**  
+   Popper expects three files: `bk.pl`, `bias.pl`, and `exs.pl` (already provided in each folder).
+   
+3. **Run Popper**  
+   Assuming Popper is cloned and set up:
+   ```sh
+   swipl path/to/popper/popper.pl --bk=bk.pl --bias=bias.pl --exs=exs.pl
+   ```
+   This will print the learned rules to the console.
+
+4. **Save the Rules**  
+   Copy the output (the learned rule(s)) and save it in `extracted_rules.pl` inside the same folder.  
+   Example:
    ```prolog
-   ?- [bias].
-   ?- [bk].
-   ?- [exs].
+   increase_velocity :- ego_velocity_is_legal, front_is_free; front_velocity_is_bigger, front_distance_is_safe, ego_velocity_is_legal.
    ```
 
-3. Start Aleph (if installed):
-   ```prolog
-   ?- aleph.
-   ?- induce.
-   ```
+5. **Repeat for Each Setting**  
+   Repeat the above steps for every subfolder (e.g., `SIL/data/acceleration/brake`, `SIL/data/unsafe/left`, etc.).
 
-4. The learned rule(s) will be displayed in the Prolog console. You can then save them to `extracted_rules.pl`:
-   ```prolog
-   ?- write_rules('extracted_rules.pl').
-   ```
+### 3. Automating or Accessing from Python
 
-#### Using Other ILP Systems
+You can use [PySwip](https://github.com/yuce/pyswip) to interact with Prolog and the learned rules from Python. Example usage:
 
-- For Popper, ILASP, or custom scripts, refer to their documentation. The typical process is to run a command or script pointing to the three Prolog files and an output file.
+```python
+from pyswip import Prolog
 
-### 3. Repeat for Each Setting
+prolog = Prolog()
+prolog.consult("bk.pl")
+prolog.consult("extracted_rules.pl")
 
-Repeat the above steps for every subfolder (e.g., `SIL/data/acceleration/brake`, `SIL/data/unsafe/left`, etc.).
-
-### 4. Example
-
-For `SIL/data/velocity/increase`:
-
-- `bias.pl`
-- `bk.pl`
-- `exs.pl`
-
-After running the ILP learner, you might get an `extracted_rules.pl` like:
-
-```prolog
-increase_velocity :- ego_velocity_is_legal, front_is_free; front_velocity_is_bigger, front_distance_is_safe, ego_velocity_is_legal.
+# Query using the learned rule
+results = list(prolog.query("increase_velocity(X)"))
+print(results)
 ```
+
+This allows you to use the background knowledge and extracted rules directly in your Python code.
 
 ## Notes
 
-- The process is similar for all other subfolders.
-- If you wish to automate extraction for all datasets, consider writing a shell script or Python script to iterate through all task/subtask folders.
-- See the [code search results for more details and files](https://github.com/CAV-Research-Lab/Symbolic-Imitation-Learning/search?q=bias.pl+bk.pl+exs.pl).
+- Make sure Popper and SWI-Prolog are correctly installed and accessible from your command line.
+- If you wish to automate extraction for all datasets, consider writing a shell or Python script to iterate through all task/subtask folders.
+- For more details on Popper usage, see the [Popper repository](https://github.com/logic-and-learning-lab/Popper).
+- For more details on PySwip, see the [PySwip repository](https://github.com/yuce/pyswip).
 
 ---
 
+*If you update your workflow or use additional scripts, please update this README to reflect your actual process!*
 *If you use a different ILP system or extraction script, please update this README to reflect your actual process!*
