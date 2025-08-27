@@ -26,7 +26,61 @@ SIL/data/
       bk.pl
       exs.pl
       extracted_rules.pl (after extraction)
-  ...
+  ..."
+Copilot said: Certainly! Here’s a more complete tree structure
+Certainly! Here’s a more complete tree structure showing multiple dataset categories and tasks as found in SIL/data/. This should help clarify the organization for your README or documentation.
+
+Code
+SIL/data/
+  velocity/
+    increase/
+      bias.pl
+      bk.pl
+      exs.pl
+      extracted_rules.pl (after extraction)
+    decrease/
+      bias.pl
+      bk.pl
+      exs.pl
+      extracted_rules.pl (after extraction)
+  acceleration/
+    brake/
+      bias.pl
+      bk.pl
+      exs.pl
+      extracted_rules.pl (after extraction)
+    accelerate/
+      bias.pl
+      bk.pl
+      exs.pl
+      extracted_rules.pl (after extraction)
+  unsafe/
+    left/
+      bias.pl
+      bk.pl
+      exs.pl
+      extracted_rules.pl (after extraction)
+    right/
+      bias.pl
+      bk.pl
+      exs.pl
+      extracted_rules.pl (after extraction)
+  dangerous/
+    left/
+      bias.pl
+      bk.pl
+      exs.pl
+      extracted_rules.pl (after extraction)
+    right/
+      bias.pl
+      bk.pl
+      exs.pl
+      extracted_rules.pl (after extraction)
+    keep/
+      bias.pl
+      bk.pl
+      exs.pl
+      extracted_rules.pl (after extraction)
 ```
 
 ## How to Extract Rules
