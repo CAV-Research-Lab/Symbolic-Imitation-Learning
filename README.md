@@ -132,5 +132,3 @@ This allows you to use the background knowledge and extracted rules directly in 
 - For more details on PySwip, see the [PySwip repository](https://github.com/yuce/pyswip).
 
 ---
-
-*If you update your workflow or use additional scripts, please update this README to reflect your actual process!*
