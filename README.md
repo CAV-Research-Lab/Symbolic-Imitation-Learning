@@ -20,24 +20,6 @@ SIL/data/
       bk.pl
       exs.pl
       extracted_rules.pl (after extraction)
-  acceleration/
-    brake/
-      bias.pl
-      bk.pl
-      exs.pl
-      extracted_rules.pl (after extraction)
-  ..."
-Copilot said: Certainly! Here’s a more complete tree structure
-Certainly! Here’s a more complete tree structure showing multiple dataset categories and tasks as found in SIL/data/. This should help clarify the organization for your README or documentation.
-
-Code
-SIL/data/
-  velocity/
-    increase/
-      bias.pl
-      bk.pl
-      exs.pl
-      extracted_rules.pl (after extraction)
     decrease/
       bias.pl
       bk.pl
@@ -82,6 +64,9 @@ SIL/data/
       exs.pl
       extracted_rules.pl (after extraction)
 ```
+
+- Each task (like `increase`, `brake`, `left`, `right`, etc.) contains the three input files (`bias.pl`, `bk.pl`, `exs.pl`) and will contain `extracted_rules.pl` once rule extraction is complete.
+- This structure can be extended as you add more tasks or categories.
 
 ## How to Extract Rules
 
@@ -135,6 +120,8 @@ results = list(prolog.query("increase_velocity(X)"))
 print(results)
 ```
 
+For more information regarding how to connect PySwip to Python, see the [Safe-Reinforcement-Learning-using-Symbolic-Logical-Programming-for-Autonomous-Highway-Driving repository](https://github.com/CAV-Research-Lab/Safe-Reinforcement-Learning-using-Symbolic-Logical-Programming-for-Autonomous-Highway-Driving).
+
 This allows you to use the background knowledge and extracted rules directly in your Python code.
 
 ## Notes
@@ -147,4 +134,3 @@ This allows you to use the background knowledge and extracted rules directly in 
 ---
 
 *If you update your workflow or use additional scripts, please update this README to reflect your actual process!*
-*If you use a different ILP system or extraction script, please update this README to reflect your actual process!*
