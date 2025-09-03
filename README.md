@@ -1,3 +1,13 @@
+# Dataset Generation
+
+In order to extract the `bias.pl`, `bk.pl`, and `exs.pl` files for each action in Safety, Efficiecy, and Smoothness, the `bias_bk_exs_generator.py` in `dataset-generation/` is used to generate files.
+
+There are other file which can help with extracting scenarios from the HighD dataset: `dataset-generation/extract_examples.py`.
+
+# Noisy Data 
+
+In order to add noise to the dataset labels, we refer to `flip_labels.py`.
+
 # Rule Extraction from Datasets in `data/`
 
 This directory contains subfolders corresponding to different semantic tasks. Each of these contains further subfolders that each represent a specific scenario or rule-learning target.
