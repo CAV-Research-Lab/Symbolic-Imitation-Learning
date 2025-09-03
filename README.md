@@ -31,12 +31,12 @@ data/
 │   │   ├── bk.pl
 │   │   ├── exs.pl
 │   │   └── extracted_rules.pl
-│   ├── LLC/
+│   ├── RLC/
 │   │   ├── bias.pl
 │   │   ├── bk.pl
 │   │   ├── exs.pl
 │   │   └── extracted_rules.pl
-│   ├── RLC/
+│   ├── LLC/
 │   │   ├── bias.pl
 │   │   ├── bk.pl
 │   │   ├── exs.pl
