@@ -1,1 +1,0 @@
-decrease_velocity:- front_distance_is_critical; ego_velocity_is_illegal; front_is_busy,front_velocity_is_lower.
