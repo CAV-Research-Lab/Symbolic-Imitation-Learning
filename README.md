@@ -15,22 +15,32 @@ Below is a current snapshot of the actual directory structure under `data/`:
 ```
 data/
 ├── fatal_lane_changing/
-│   ├── LLC/
-│   │   └── exs.pl
 │   ├── RLC/
 │   │   ├── bias.pl
+│   │   ├── bk.pl
+│   │   ├── exs.pl
+│   │   └── extracted_rules.pl
+│   ├── LLC/
+│   │   ├── bias.pl
+│   │   ├── bk.pl
 │   │   ├── exs.pl
 │   │   └── extracted_rules.pl
 ├── risky_lane_changing/
 │   ├── LK/
 │   │   ├── bias.pl
+│   │   ├── bk.pl
 │   │   ├── exs.pl
 │   │   └── extracted_rules.pl
 │   ├── LLC/
 │   │   ├── bias.pl
+│   │   ├── bk.pl
+│   │   ├── exs.pl
 │   │   └── extracted_rules.pl
 │   ├── RLC/
-│   │   └── exs.pl
+│   │   ├── bias.pl
+│   │   ├── bk.pl
+│   │   ├── exs.pl
+│   │   └── extracted_rules.pl
 ```
 
 _Note: Only a subset of files and directories are shown due to search result limitations. For the complete structure, see the [`data/` directory in GitHub](https://github.com/CAV-Research-Lab/Symbolic-Imitation-Learning/tree/main/data)._
