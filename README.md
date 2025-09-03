@@ -1,14 +1,21 @@
-# Dataset Generation
+# Symbolic Imitation Learning: From Black-Box to Explainable Driving Policies
+
+## Abstract:
+
+Current imitation learning approaches, predominantly based on deep neural networks (DNNs), offer efficient mechanisms for learning driving policies from real-world datasets. However, they suffer from inherent limitations in interpretability and generalizability—issues of critical importance in safety-critical domains such as autonomous driving. In this paper, we introduce Symbolic Imitation Learning (SIL), a novel framework that leverages Inductive Logic Programming (ILP) to derive explainable and generalizable driving policies from synthetic datasets. We evaluate SIL on real-world HighD and NGSim datasets, comparing its performance with state-of-the-art neural imitation learning methods using metrics such as collision rate, lane change efficiency, and average speed. The results indicate that SIL significantly enhances policy transparency while maintaining strong performance across varied driving conditions. These findings highlight the potential of integrating ILP into imitation learning to promote safer and more reliable autonomous systems.
+
+
+## Dataset Generation
 
 In order to extract the `bias.pl`, `bk.pl`, and `exs.pl` files for each action in Safety, Efficiecy, and Smoothness, the `bias_bk_exs_generator.py` in `dataset-generation/` is used to generate files.
 
 There are other file which can help with extracting scenarios from the HighD dataset: `dataset-generation/extract_examples.py`.
 
-# Noisy Data 
+## Noisy Data 
 
 In order to add noise to the dataset labels, we refer to `flip_labels.py`.
 
-# Rule Extraction from Datasets in `data/`
+## Rule Extraction from Datasets in `data/`
 
 This directory contains subfolders corresponding to different semantic tasks. Each of these contains further subfolders that each represent a specific scenario or rule-learning target.
 
@@ -18,7 +25,7 @@ Each lowest-level folder contains three files:
 - `exs.pl` — labeled examples (positive/negative)
 - (Optionally, after rule extraction, `extracted_rules.pl` — the result file with learned rules)
 
-## Directory Structure (Actual Example)
+### Directory Structure (Actual Example)
 
 Below is a current snapshot of the actual directory structure under `data/`:
 
@@ -58,22 +65,22 @@ _Note: Only a subset of files and directories are shown due to search result lim
 - Each task (like `LK`, `LLC`, `RLC`, etc.) contains the input files (`bias.pl`, `bk.pl`, `exs.pl`) and may contain `extracted_rules.pl` once rule extraction is complete.
 - This structure can be extended as you add more tasks or categories.
 
-## How to Extract Rules
+### How to Extract Rules
 
-### 1. Prerequisites
+#### 1. Prerequisites
 
 - **Popper** ([GitHub](https://github.com/logic-and-learning-lab/Popper)): Install Popper following the instructions in its repository.
 - **SWI-Prolog**: Popper requires SWI-Prolog.
 - **Python (with PySwip)**: Install PySwip (`pip install pyswip`) for Python-Prolog interaction.
 
-#### Updated Dependencies
+##### Updated Dependencies
 
 - `Popper`
 - `SWI-Prolog`
 - `Python >=3.6`
 - `PySwip` (`pip install pyswip`)
 
-### 2. Extracting Rules Using Popper
+#### 2. Extracting Rules Using Popper
 
 1. **Navigate to the Target Directory**  
    Example:
@@ -101,7 +108,7 @@ _Note: Only a subset of files and directories are shown due to search result lim
 5. **Repeat for Each Setting**  
    Repeat the above steps for every subfolder (e.g., `data/risky_lane_changing/LLC`, `data/fatal_lane_changing/RLC`, etc.).
 
-### 3. Automating or Accessing from Python
+#### 3. Automating or Accessing from Python
 
 You can use [PySwip](https://github.com/yuce/pyswip) to interact with Prolog and the learned rules from Python. Example usage:
 
@@ -121,7 +128,7 @@ For more information regarding how to connect PySwip to Python, see the [Safe-Re
 
 This allows you to use the background knowledge and extracted rules directly in your Python code.
 
-## Notes
+### Notes
 
 - Make sure Popper and SWI-Prolog are correctly installed and accessible from your command line.
 - If you wish to automate extraction for all datasets, consider writing a shell or Python script to iterate through all task/subtask folders.
