@@ -1,8 +1,6 @@
-# Symbolic-Imitation-Learning-using-Inductive-Logic-Programming
-We extract symbolic first-order logical rules using inductive logic programming (ILP) to find a safe and legal policy in autonomous highway driving. Using inductive reasoning, this method is interpretable, generalizable, and data-efficient.
-# Rule Extraction from Datasets in `SIL/data/`
+# Rule Extraction from Datasets in `data/`
 
-This directory contains subfolders (e.g., `velocity/`, `unsafe/`, `dangerous/`, `acceleration/`) corresponding to different semantic tasks. Each of these contains further subfolders (e.g., `increase/`, `left/`, `brake/`) that each represent a specific scenario or rule-learning target.
+This directory contains subfolders corresponding to different semantic tasks. Each of these contains further subfolders that each represent a specific scenario or rule-learning target.
 
 Each lowest-level folder contains three files:
 - `bias.pl` — bias settings for the rule learner (e.g., allowed predicates, head predicate)
@@ -10,62 +8,34 @@ Each lowest-level folder contains three files:
 - `exs.pl` — labeled examples (positive/negative)
 - (Optionally, after rule extraction, `extracted_rules.pl` — the result file with learned rules)
 
-## Directory Structure Example
+## Directory Structure (Actual Example)
+
+Below is a current snapshot of the actual directory structure under `data/`:
 
 ```
-SIL/data/
-  velocity/
-    increase/
-      bias.pl
-      bk.pl
-      exs.pl
-      extracted_rules.pl (after extraction)
-    decrease/
-      bias.pl
-      bk.pl
-      exs.pl
-      extracted_rules.pl (after extraction)
-  acceleration/
-    brake/
-      bias.pl
-      bk.pl
-      exs.pl
-      extracted_rules.pl (after extraction)
-    accelerate/
-      bias.pl
-      bk.pl
-      exs.pl
-      extracted_rules.pl (after extraction)
-  unsafe/
-    left/
-      bias.pl
-      bk.pl
-      exs.pl
-      extracted_rules.pl (after extraction)
-    right/
-      bias.pl
-      bk.pl
-      exs.pl
-      extracted_rules.pl (after extraction)
-  dangerous/
-    left/
-      bias.pl
-      bk.pl
-      exs.pl
-      extracted_rules.pl (after extraction)
-    right/
-      bias.pl
-      bk.pl
-      exs.pl
-      extracted_rules.pl (after extraction)
-    keep/
-      bias.pl
-      bk.pl
-      exs.pl
-      extracted_rules.pl (after extraction)
+data/
+├── fatal_lane_changing/
+│   ├── LLC/
+│   │   └── exs.pl
+│   ├── RLC/
+│   │   ├── bias.pl
+│   │   ├── exs.pl
+│   │   └── extracted_rules.pl
+├── risky_lane_changing/
+│   ├── LK/
+│   │   ├── bias.pl
+│   │   ├── exs.pl
+│   │   └── extracted_rules.pl
+│   ├── LLC/
+│   │   ├── bias.pl
+│   │   └── extracted_rules.pl
+│   ├── RLC/
+│   │   └── exs.pl
 ```
 
-- Each task (like `increase`, `brake`, `left`, `right`, etc.) contains the three input files (`bias.pl`, `bk.pl`, `exs.pl`) and will contain `extracted_rules.pl` once rule extraction is complete.
+_Note: Only a subset of files and directories are shown due to search result limitations. For the complete structure, see the [`data/` directory in GitHub](https://github.com/CAV-Research-Lab/Symbolic-Imitation-Learning/tree/main/data)._
+
+- Each task (like `LK`, `LLC`, `RLC`, etc.) contains the input files (`bias.pl`, `bk.pl`, `exs.pl`) and may contain `extracted_rules.pl` once rule extraction is complete.
 - This structure can be extended as you add more tasks or categories.
 
 ## How to Extract Rules
@@ -76,12 +46,19 @@ SIL/data/
 - **SWI-Prolog**: Popper requires SWI-Prolog.
 - **Python (with PySwip)**: Install PySwip (`pip install pyswip`) for Python-Prolog interaction.
 
+#### Updated Dependencies
+
+- `Popper`
+- `SWI-Prolog`
+- `Python >=3.6`
+- `PySwip` (`pip install pyswip`)
+
 ### 2. Extracting Rules Using Popper
 
 1. **Navigate to the Target Directory**  
-   Example for velocity/increase:
+   Example:
    ```sh
-   cd SIL/data/velocity/increase
+   cd data/risky_lane_changing/LK
    ```
 
 2. **Prepare Popper Input**  
@@ -102,7 +79,7 @@ SIL/data/
    ```
 
 5. **Repeat for Each Setting**  
-   Repeat the above steps for every subfolder (e.g., `SIL/data/acceleration/brake`, `SIL/data/unsafe/left`, etc.).
+   Repeat the above steps for every subfolder (e.g., `data/risky_lane_changing/LLC`, `data/fatal_lane_changing/RLC`, etc.).
 
 ### 3. Automating or Accessing from Python
 
@@ -132,3 +109,5 @@ This allows you to use the background knowledge and extracted rules directly in 
 - For more details on PySwip, see the [PySwip repository](https://github.com/yuce/pyswip).
 
 ---
+
+*If you update your workflow or use additional scripts, please update this README to reflect your actual process!*
