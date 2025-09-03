@@ -7,7 +7,7 @@ Current imitation learning approaches, predominantly based on deep neural networ
 
 ## Dataset Generation
 
-In order to extract the `bias.pl`, `bk.pl`, and `exs.pl` files for each action in Safety, Efficiecy, and Smoothness, the `bias_bk_exs_generator.py` in `dataset-generation/` is used to generate files.
+In order to extract the `bias.pl`, `bk.pl`, and `exs.pl` files for each action in Safety, Efficiecy, and Smoothness categories, the `bias_bk_exs_generator.py` in `dataset-generation/` is used to generate files.
 
 There are other file which can help with extracting scenarios from the HighD dataset: `dataset-generation/extract_examples.py`.
 
