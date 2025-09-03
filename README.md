@@ -124,6 +124,8 @@ results = list(prolog.query("increase_velocity(X)"))
 print(results)
 ```
 
+After doing all the settings, to see how the SIL framework performs at on the HighD dataset, run `train.py` file.
+
 For more information regarding how to connect PySwip to Python, see the [Safe-Reinforcement-Learning-using-Symbolic-Logical-Programming-for-Autonomous-Highway-Driving repository](https://github.com/CAV-Research-Lab/Safe-Reinforcement-Learning-using-Symbolic-Logical-Programming-for-Autonomous-Highway-Driving).
 
 This allows you to use the background knowledge and extracted rules directly in your Python code.
